@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로크리 위스키 퀴즈</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+        .text-box h1 {        
+            font-family: 'Staatliches', cursive;
+            font-size: 2.1em;
+            text-align: center;
+            color: #F1C164;
+            text-shadow: 5px 5px #2D63A7;
+            margin: 0;
+            text-decoration: underline;
+        }
+        .text-box h4 {
+            font-family: 'Orbit', sans-serif;
+        }
+
+        body { 
+            text-align: center;
+            margin-left: 5px;
+            margin-right: 5px;
+            }
+        .hidden { display: none; }
+  
+        /* 틀린 문제 카드 2x2 그리드 레이아웃 */
+        #wrong-answers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: 5px 10px 10px 10px;
+            font-family: 'Orbit', sans-serif;
+            color: #000;
+        }
+
+        /* 2x2 카드 레이아웃 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        #question {
+            text-align: left;
+            margin: 10px 10px 10px; 
+            
+            
+        }
+        #options {
+            margin: 10px 10px 10px;
+            font-family: 'Orbit', sans-serif;
+        }
+
+        #result h1{
+            font-family: 'Orbit', sans-serif;
+            font-size: 2.1em;
+            text-align: center;
+            color: #F1C164;
+            text-shadow: 5px 5px #2D63A7;
+            margin: 0;
+            text-decoration: underline;
+        }
+
+        /* 카드 스타일 */
+        .card {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            
+            
+        }
+        .card p{
+            color:#404040;
+            font-family: 'Orbit', sans-serif;
+        }
+
+        /* 이미지 스타일 */
+        .card img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+
+        /* 제목 색상 검정 */
+        .card h3 {
+            color: #374600;
+            margin: 0;
+        }
+
+        .card:hover {
+            background: #e5f8a5;
+        }
+
+
+        /* 모바일 반응형 처리 */
+        @media (max-width: 600px) {
+            #wrong-answers {
+                grid-template-columns: 1fr; /* 작은 화면에서는 1열 정렬 */
+            }
+
+            .grid {
+                grid-template-columns: 1fr; /* 작은 화면에서는 1열 정렬 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <main id="quiz-container">
+        <!-- 첫 화면 -->
+        <section id="home">
+            <div class="text-box"><h1>Whiscovery March Meeting</h1></div>
+            <p>간단한 퀴즈와 함께 오늘 정모를 시작해보아요.</p>
+            <div class="text-box"><h4>오늘의 라인업</h4></div>
+
+             <!-- 2x2 카드 섹션 -->
+             <div class="grid">
+                <div class="card">
+                    <img src="OurBarley.png" alt="로크리 아워 발리">
+                    <div>
+                        <h3>로크리 아워 발리<br />
+                            <small>Our Barley</small>
+                        </h3>
+                        <p>퍼스트필 버번, 올로로소, STR 캐스크</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="Sowing.png" alt="로크리 소잉">
+                    <div>
+                        <h3>로크리 소잉<br />
+                            <small>Sowing Edition</small>
+                        </h3>
+                        <p>100% 퍼스트필 버번 캐스크(from 메이커스마크)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="Ploughing.png" alt="로크리 플라윙">
+                    <div>
+                        <h3>로크리 플라윙<br />
+                            <small>Ploughing Edition</small>
+                        </h3>
+                        <p>아일래이 피트, 피트 쿼터캐스크(아마도 라프로익)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="csb2.png" alt="로크리 CS 배치2">
+                    <div>
+                        <h3>로크리 CS 배치2<br />
+                            <small>Cask Strength Batch2</small>
+                        </h3>
+                        <p>버번, 올로로소, PX, STR 캐스크</p>
+                    </div>
+                </div>
+            </div>
+            <button onclick="startQuiz()">퀴즈 시작</button>
+        </section>
+
+        <!-- 퀴즈 진행 화면 (초기 숨김) -->
+        <section id="quiz" class="hidden">
+            <hr class="line1">
+            <h3 id="question"></h3>
+            <div id="options"></div>
+        </section>
+
+        <!-- 결과 화면 (초기 숨김) -->
+        <section id="result" class="hidden">
+            <h1>퀴즈 완료!</h1>
+            <p id="scoreText"></p>
+
+            <!-- 틀린 문제 정답 카드 (2x2 배열) -->
+            <h2 id="wrong-title" class="hidden">틀린 문제 정답</h2>
+            <div id="wrong-answers" class="hidden"></div>
+            <br />
+
+            <button onclick="location.href='info.html'">오늘의 정모!!!</button> <!-- 추가된 버튼 -->
+            <button onclick="location.reload()" class="outline secondary">처음으로</button>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("home").classList.remove("hidden"); // 첫 페이지 표시
+            document.getElementById("quiz").classList.add("hidden");  // 퀴즈 숨김
+            document.getElementById("result").classList.add("hidden"); // 결과 페이지 숨김
+        });
+
+        const quizData = [
+            { 
+                question: "로크리 아워발리라는 제품명에서 알 수 있는 것은 로크리 증류소의 위스키는 로크리 증류소의 밭에서 생산되는 ㅁ만 사용한다는 것이다. ㅁ는 무엇일까요?", 
+                options: ["밀", "보리", "벼", "옥수수"], 
+                answer: "보리" 
+            },
+            { 
+                question: "100% 퍼스트필 버번캐스크를 사용한 로크리 소잉은 상큼한 과일과 풀향이 매력적입니다. 제품명인 Sowing은 씨앗을 뿌린다는 의미이기도 하지요. 이 제품은 어떤 계절 한정 상품일까요?", 
+                options: ["봄", "여름", "가을", "겨울"], 
+                answer: "봄" 
+            },
+            { 
+                question: "로크리 플로잉은 겨울 시즌 한정제품입니다. Ploughing은 땅을 쟁기로 갈다는 의미인데, 로크리 플로잉은 어떤 향이 날까요?", 
+                options: ["향긋한 꽃", "프레쉬한 과일", "말린 베리", "스모키한 피트"], 
+                answer: "스모키한 피트" 
+            },
+            { 
+                question: "다음 중 로크리 증류소와 관련이 없는 것은 무엇일까요?", 
+                options: ["가족 소유", "하이 랜드", "로버트 번즈", "보리경작", "목축업"], 
+                answer: "하이 랜드" 
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let wrongAnswers = [];
+
+        // 퀴즈 시작
+        function startQuiz() {
+            document.getElementById("home").classList.add("hidden"); // 첫 페이지 숨기기
+            document.getElementById("quiz").classList.remove("hidden"); // 퀴즈 화면 표시
+            loadQuestion();
+        }
+
+        // 문제 로드
+        function loadQuestion() {
+            const questionData = quizData[currentQuestion];
+            document.getElementById("question").innerText = questionData.question;
+            
+            const optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = "";
+
+            questionData.options.forEach(option => {
+                let button = document.createElement("button");
+                button.innerText = option;
+                button.onclick = () => checkAnswer(option);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        // 정답 체크
+        function checkAnswer(selectedAnswer) {
+            const questionData = quizData[currentQuestion];
+
+            if (selectedAnswer === questionData.answer) {
+                score++;
+            } else {
+                wrongAnswers.push({ question: questionData.question, answer: questionData.answer });
+            }
+            nextQuestion();
+        }
+
+        // 다음 문제
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        // 결과 표시
+        function showResult() {
+            document.getElementById("quiz").classList.add("hidden"); // 퀴즈 화면 숨기기
+            document.getElementById("result").classList.remove("hidden"); // 결과 화면 표시
+            document.getElementById("scoreText").innerText = `맞춘 개수: ${score} / ${quizData.length}`;
+            showWrongAnswers();
+        }
+
+        // 틀린 문제 정답 카드 표시 (2x2 배열)
+        function showWrongAnswers() {
+            const wrongTitle = document.getElementById("wrong-title");
+            const wrongContainer = document.getElementById("wrong-answers");
+
+            if (wrongAnswers.length === 0) return;
+
+            wrongTitle.classList.remove("hidden");
+            wrongContainer.classList.remove("hidden");
+            wrongContainer.innerHTML = ""; // 기존 카드 삭제
+
+            wrongAnswers.forEach(item => {
+                let card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<p>${item.question}<br /><br /><b>정답:</b> ${item.answer}</p>`;
+                wrongContainer.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
