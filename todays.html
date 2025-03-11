@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lochlea Whiskies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 기본 스타일 */
+body {
+    text-align: center;
+}
+body p{
+    color: #000;
+}
+
+body h1{
+    font-family: 'Staatliches', cursive;
+    font-size: 2.1em;
+    text-align: center;
+    color: #F1C164;
+    text-shadow: 5px 5px #2D63A7;
+    margin: 0;
+    text-decoration: underline;
+}
+body h2{
+    color: #ecaa24;
+}
+
+/* 위스키 카드 스타일 */
+.lochlea {
+    font-size: 0.9rem;
+    font-family: 'Orbit', sans-serif;
+    text-align: left;
+}
+.whisky {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 이미지 스타일 */
+.whisky img {
+    width: 100%;
+    max-width: 200px;
+}
+
+/* 정보 텍스트 스타일 */
+.info {
+    text-align: left;
+}
+
+.footer {
+            width: 100%;
+        }
+.footer button {
+    width: 100%;
+    margin-top: 5px;
+
+}
+
+/* 반응형 (태블릿 이상에서 가로 배치) */
+@media (min-width: 768px) {
+    .whisky {
+        flex-direction: row;
+        text-align: left;
+    }
+    .whisky img {
+        margin-right: 15px;
+    }
+}
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>오늘의 위스키 요약</h1>
+        <section class="lochlea">
+            <p>
+                <ul>
+                    <li>
+                        2018년 닐 매지오크가 로우랜드에 설립한 가족 소유 증류소
+                    </li>
+                    <li>
+                        직접 보리 재배, 직접 증류, 직접 숙성까지 하는 필드 투 캐스크(filed to cask)
+                    </li>
+                    <li>
+                        일반적으로 스코틀랜드에서는 1년에 두번 보리를 수확하나 로크리는 땅 보존을 위해 한번만 수확
+                    </li>
+                    <li>
+                        오피셜 제품인 아워발리를 비롯한 각 계절 한정 상품인 소잉, 하베스트, 팔로우, 플로잉이 있고 캐스크 스트랭스제품과 최근 출시된 5년 숙성 제품이 있음
+                    </li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="whisky">
+            <img src="OurBarley.png" alt="로크리 아워발리">
+            <div class="info">
+                <h2>Lochlea Our Barley</h2>
+                <p><strong>Nose:</strong> 배, 과일 젤리, 풀, 마멀레이드</p>
+                <p><strong>Taste:</strong> 시럽, 후추, 호밀빵, 마카다미아, 크림</p>
+                <p><strong>Finish:</strong> 긴 여운, 오렌지, 벌집</p>
+                <p><strong>기타 정보:</strong> 
+                <ul>
+                    <li>유일한 공식 제품</li>
+                    <li>버번, 올로로소, STR 캐스크</li>
+                    <li>46% ABV</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="whisky">
+            <img src="Sowing.png" alt="로크리 소잉">
+            <div class="info">
+                <h2>Lochlea Sowing</h2>
+                <p><strong>Nose:</strong> 달콤한, 사과, 배</p>
+                <p><strong>Taste:</strong> 바닐라빈, 아몬드 오일, 상큼한</p>
+                <p><strong>Finish:</strong> 상쾌한, 솔잎, 숲</p>
+                <p><strong>기타 정보:</strong> 
+                <ul>
+                    <li>씨를 뿌리다라는 의미의 봄 한정 상품</li>
+                    <li>퍼스트필 버번캐스크(from 아마도 메이커스 마크)</li>
+                    <li>46% ABV</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="whisky">
+            <img src="Ploughing.png" alt="로크리 플로잉">
+            <div class="info">
+                <h2>Lochlea Ploughing</h2>
+                <p><strong>Nose:</strong> 시리얼, 신선한, 청사과</p>
+                <p><strong>Taste:</strong> 과일, 산뜻한, 건초</p>
+                <p><strong>Finish:</strong> 소금, 긴 여운, 피트</p>
+                <p><strong>기타 정보:</strong> 
+                <ul>
+                    <li>쟁기로 밭을 갈다는 의미로 겨울 한정</li>
+                    <li>아일라섬 피트, (아마도 라프로익)피트쿼터 캐스크</li>
+                    <li>46% ABV</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="whisky">
+            <img src="csb2.png" alt="로크리 CS 배치 2">
+            <div class="info">
+                <h2>Lochlea CS Batch 2</h2>
+                <p><strong>Nose:</strong> 과일, 견과류, 시리얼, 풍부한</p>
+                <p><strong>Taste:</strong> 사과, 복숭아, 마멀레이드</p>
+                <p><strong>Finish:</strong> 라벤더, 장미꽃, 흑후추, 긴 여운</p>
+                <p><strong>기타 정보:</strong> 
+                <ul>
+                    <li>버번, 올로로소, PX, STR 캐스크</li>
+                    <li>60% ABV</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <section class="footer">
+
+        <button onclick="location.href='https://speckled-people-03c.notion.site/Lochlea-1b2f30d25d6f8061beffe3d3b076dbe2?pvs=4'">로크리에 대해 더 자세히 알기</button> 
+        <br />
+        <button class="outline secondary" onclick="location.href='index.html'">퀴즈 다시 하기</button>
+    </section>
+</body>
+</html>
