@@ -9,6 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+        
 
         .text-box h1 {        
             font-family: 'Staatliches', cursive;
@@ -29,6 +30,26 @@
             margin-right: 5px;
             }
         .hidden { display: none; }
+
+       
+
+        body h1{
+            font-family: 'Staatliches', cursive;
+            font-size: 2.1em;
+            text-align: center;
+            color: #F1C164;
+            text-shadow: 5px 5px #2D63A7;
+            margin: 0;
+            text-decoration: underline;
+        }
+        body h2{
+            color: #ecaa24;
+            font-family: 'Orbit', sans-serif;
+        }
+        body h4{
+            color: #ecaa24;
+            font-family: 'Orbit', sans-serif;
+        }
   
         /* 틀린 문제 카드 2x2 그리드 레이아웃 */
         #wrong-answers {
@@ -58,6 +79,22 @@
             
             
         }
+        #bunsPoem {
+            text-align: left;
+            margin: 10px 10px 10px;             
+        }
+        #todays {
+            text-align: left;
+            margin: 10px 10px 10px;             
+        }
+
+
+        .poem {
+            font-size: 1rem;
+            font-style: italic;
+            font-family: 'Orbit', sans-serif;
+        }
+        
         #options {
             margin: 10px 10px 10px;
             font-family: 'Orbit', sans-serif;
@@ -71,6 +108,46 @@
             text-shadow: 5px 5px #2D63A7;
             margin: 0;
             text-decoration: underline;
+        }
+
+        /* 위스키 카드 스타일 */
+        .lochlea {
+            font-size: 0.9rem;
+            font-family: 'Orbit', sans-serif;
+            text-align: left;
+        }
+        .whisky {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .whisky p{
+
+            color:#404040;
+            font-family: 'Orbit', sans-serif;
+        }
+        /* 이미지 스타일 */
+        .whisky img {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        /* 정보 텍스트 스타일 */
+        .info {
+            text-align: left;
+        }
+
+        .footer {
+                    width: 100%;
+                }
+        .footer button {
+            width: 100%;
+            margin-top: 5px;
+
         }
 
         /* 카드 스타일 */
@@ -118,6 +195,18 @@
 
             .grid {
                 grid-template-columns: 1fr; /* 작은 화면에서는 1열 정렬 */
+            }
+        }
+
+
+        /* 반응형 (태블릿 이상에서 가로 배치) */
+        @media (min-width: 768px) {
+            .whisky {
+                flex-direction: row;
+                text-align: left;
+            }
+            .whisky img {
+                margin-right: 15px;
             }
         }
     </style>
@@ -189,9 +278,139 @@
             <div id="wrong-answers" class="hidden"></div>
             <br />
 
-            <button onclick="location.href='info.html'">오늘의 정모!!!</button> <!-- 추가된 버튼 -->
+            <!-- <button onclick="location.href='info.html'">오늘의 정모!!!</button> -->
+            <button onclick="startPoem()">오늘의 정모를 시작합니다.</button>
             <button onclick="location.reload()" class="outline secondary">처음으로</button>
         </section>
+
+
+        <section id="bunsPoem" class="hidden">
+            <h2>올드 랭 사인(Auld Lang Syne)</h2>
+            <p class="poem">
+                오래된 인연을 어찌 잊어먹고<br />
+                머릿속에 떠올리지 않으리?<br />
+                오래된 인연들과 지난지 오래된 날들<br />
+                어찌 잊으랴?<br /><br />
+                
+                오랜 옛날부터, 내 사랑아<br />
+                오랜 옛날부터<br />
+                다정함 한잔 축배를 드세<br />
+                오래된 옛날을 위해<br /><br />
+                
+                너는 네 잔을 한잔 사고<br />
+                나는 내 잔 한잔 꼭 살 테니<br />
+                다정함 한잔 축배를 드세<br />
+                오래된 옛날을 위해<br />
+                ...(중략)...
+            </p>
+            <p style="text-align:right;"><strong>— Robert Burns</strong></p>
+            
+    
+            <div class="card">
+                <p>영국의 국민시인인 로버트 번즈는 현재 로크리 증류소가 있는 농장에서 1777년부터 1784년까지 실제 거주하며 농사를 지었다고 합니다.<br />
+                로크리 증류소는 이에 대한 자부심을 가지고 있으며, 그런 의미에서 그들의 첫 제품이었던 3년 숙성 제품을 7,000병 한정으로 로버트 번즈의 생일인 2022년 1월 25일에 내기도 했습니다.<br />
+                <br />(과도한 음주로 세상을 떠난건 안비밀)
+                </p>
+            </div>
+            <br />
+            <div class="footer">
+                <button onclick="startTodays()">오늘의 정모를 위한 설명</button> 
+                <button class="outline secondary" onclick="location.href='index.html'">퀴즈 다시 하기</button>
+            </div>
+        </section>
+
+
+        <section id="todays">
+            <h1>오늘의 위스키 요약</h1>
+            <div class="lochlea">
+                <p>
+                    <ul>
+                        <li>
+                            2018년 닐 매지오크가 로우랜드에 설립한 가족 소유 증류소
+                        </li>
+                        <li>
+                            직접 보리 재배, 직접 증류, 직접 숙성까지 하는 필드 투 캐스크(filed to cask)
+                        </li>
+                        <li>
+                            일반적으로 스코틀랜드에서는 1년에 두번 보리를 수확하나 로크리는 땅 보존을 위해 한번만 수확
+                        </li>
+                        <li>
+                            오피셜 제품인 아워발리를 비롯한 각 계절 한정 상품인 소잉, 하베스트, 팔로우, 플로잉이 있고 캐스크 스트랭스제품과 최근 출시된 5년 숙성 제품이 있음
+                        </li>
+                    </ul>
+                </p>
+            </div>
+    
+            <div class="whisky">
+                <img src="OurBarley.png" alt="로크리 아워발리">
+                <div class="info">
+                    <h2>Lochlea Our Barley</h2>
+                    <p><strong>Nose:</strong> 배, 과일 젤리, 풀, 마멀레이드</p>
+                    <p><strong>Taste:</strong> 시럽, 후추, 호밀빵, 마카다미아, 크림</p>
+                    <p><strong>Finish:</strong> 긴 여운, 오렌지, 벌집</p>
+                    <p><strong>기타 정보:</strong> 
+                    <ul>
+                        <li>유일한 공식 제품</li>
+                        <li>버번, 올로로소, STR 캐스크</li>
+                        <li>46% ABV</li>
+                    </ul>
+                </div>
+            </div><br />
+    
+            <div class="whisky">
+                <img src="Sowing.png" alt="로크리 소잉">
+                <div class="info">
+                    <h2>Lochlea Sowing</h2>
+                    <p><strong>Nose:</strong> 달콤한, 사과, 배</p>
+                    <p><strong>Taste:</strong> 바닐라빈, 아몬드 오일, 상큼한</p>
+                    <p><strong>Finish:</strong> 상쾌한, 솔잎, 숲</p>
+                    <p><strong>기타 정보:</strong> 
+                    <ul>
+                        <li>씨를 뿌리다라는 의미의 봄 한정 상품</li>
+                        <li>퍼스트필 버번캐스크(from 아마도 메이커스 마크)</li>
+                        <li>46% ABV</li>
+                    </ul>
+                </div>
+            </div><br />
+    
+            <div class="whisky">
+                <img src="Ploughing.png" alt="로크리 플로잉">
+                <div class="info">
+                    <h2>Lochlea Ploughing</h2>
+                    <p><strong>Nose:</strong> 시리얼, 신선한, 청사과</p>
+                    <p><strong>Taste:</strong> 과일, 산뜻한, 건초</p>
+                    <p><strong>Finish:</strong> 소금, 긴 여운, 피트</p>
+                    <p><strong>기타 정보:</strong> 
+                    <ul>
+                        <li>쟁기로 밭을 갈다는 의미로 겨울 한정</li>
+                        <li>아일라섬 피트, (아마도 라프로익)피트쿼터 캐스크</li>
+                        <li>46% ABV</li>
+                    </ul>
+                </div>
+            </div><br />
+    
+            <div class="whisky">
+                <img src="csb2.png" alt="로크리 CS 배치 2">
+                <div class="info">
+                    <h2>Lochlea CS Batch 2</h2>
+                    <p><strong>Nose:</strong> 과일, 견과류, 시리얼, 풍부한</p>
+                    <p><strong>Taste:</strong> 사과, 복숭아, 마멀레이드</p>
+                    <p><strong>Finish:</strong> 라벤더, 장미꽃, 흑후추, 긴 여운</p>
+                    <p><strong>기타 정보:</strong> 
+                    <ul>
+                        <li>버번, 올로로소, PX, STR 캐스크</li>
+                        <li>60% ABV</li>
+                    </ul>
+                </div>
+            </div>
+  
+            <br />
+            <div class="footer">
+                <button onclick="location.href='https://speckled-people-03c.notion.site/Lochlea-1b2f30d25d6f8061beffe3d3b076dbe2?pvs=4'">로크리에 대해 더 자세히 알기</button> 
+                <button class="outline secondary" onclick="location.href='index.html'">퀴즈 다시 하기</button>
+            </div>
+        </section>
+       
     </main>
 
     <script>
@@ -199,6 +418,8 @@
             document.getElementById("home").classList.remove("hidden"); // 첫 페이지 표시
             document.getElementById("quiz").classList.add("hidden");  // 퀴즈 숨김
             document.getElementById("result").classList.add("hidden"); // 결과 페이지 숨김
+            document.getElementById("bunsPoem").classList.add("hidden"); // 결과 페이지 숨김
+            document.getElementById("todays").classList.add("hidden"); // 결과 페이지 숨김
         });
 
         const quizData = [
@@ -234,7 +455,21 @@
             document.getElementById("quiz").classList.remove("hidden"); // 퀴즈 화면 표시
             loadQuestion();
         }
+        function startPoem() {
+            document.getElementById("home").classList.add("hidden"); // 첫 페이지 숨기기
+            document.getElementById("quiz").classList.add("hidden"); // 퀴즈 화면 표시
+            document.getElementById("result").classList.add("hidden"); // 퀴즈 화면 표시
+            document.getElementById("bunsPoem").classList.remove("hidden"); // 퀴즈 화면 표시
+            document.getElementById("todays").classList.add("hidden"); // 퀴즈 화면 표시
+        }
 
+        function startTodays() {
+            document.getElementById("home").classList.add("hidden"); // 첫 페이지 숨기기
+            document.getElementById("quiz").classList.add("hidden"); // 퀴즈 화면 표시
+            document.getElementById("result").classList.add("hidden"); // 퀴즈 화면 표시
+            document.getElementById("bunsPoem").classList.add("hidden"); // 퀴즈 화면 표시
+            document.getElementById("todays").classList.remove("hidden"); // 퀴즈 화면 표시
+        }
         // 문제 로드
         function loadQuestion() {
             const questionData = quizData[currentQuestion];
