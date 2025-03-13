@@ -458,7 +458,7 @@
             <br />
             <div class="footer">
                 <button onclick="location.href='https://speckled-people-03c.notion.site/Lochlea-1b2f30d25d6f8061beffe3d3b076dbe2?pvs=4'">로크리에 대해 더 자세히 알기</button> 
-                <button onclick="startPoem()" class="outline secondary">시 다시 읽기.</button>
+                <button onclick="startPoem()" class="outline secondary">시 다시 읽기</button>
                 <button class="outline secondary" onclick="location.href='index.html'">퀴즈 다시 하기</button>
             </div>
         </section>
@@ -478,22 +478,26 @@
             { 
                 question: "로크리 아워발리라는 제품명에서 알 수 있는 것은 로크리 증류소의 위스키는 로크리 증류소의 밭에서 생산되는 ㅁ만 사용한다는 것이다. ㅁ는 무엇일까요?", 
                 options: ["밀", "보리", "벼", "옥수수"], 
-                answer: "보리" 
+                answer: "보리",
+                desc: "로크리 증류소는 자신들이 직접 보리를 키워 캐스크 숙성까지 하는 것을 자부심으로 삼고 있습니다."
             },
             { 
                 question: "100% 퍼스트필 버번캐스크를 사용한 로크리 소잉은 상큼한 과일과 풀향이 매력적입니다. 제품명인 Sowing은 씨앗을 뿌린다는 의미이기도 하지요. 이 제품은 어떤 계절 한정 상품일까요?", 
                 options: ["봄", "여름", "가을", "겨울"], 
-                answer: "봄" 
+                answer: "봄",
+                desc: "씨를 뿌리는 계절은 봄이지요. 봄에 걸맞게 Sowing은 푸릇한 향이 매력적입니다.."
             },
             { 
                 question: "로크리 플로잉은 겨울 시즌 한정제품입니다. Ploughing은 땅을 쟁기로 갈다는 의미인데, 로크리 플로잉은 어떤 향이 날까요?", 
                 options: ["향긋한 꽃", "프레쉬한 과일", "말린 베리", "스모키한 피트"], 
-                answer: "스모키한 피트" 
+                answer: "스모키한 피트",
+                desc: "피트는 땅에서 나오는 석탄의 일종이죠. 쟁기로 갈아엎다보면 피트가 나올 수도 있겠네요?" 
             },
             { 
                 question: "다음 중 로크리 증류소와 관련이 없는 것은 무엇일까요?", 
                 options: ["가족 소유", "하이 랜드", "로버트 번즈", "보리경작", "목축업"], 
-                answer: "하이 랜드" 
+                answer: "하이 랜드",
+                desc: "로크리 증류소는 로우랜드에 속해있습니다. 로버트 번즈가 일했던 곳이며, 가족소유입니다. 보리를 직접 경작하는데, 이전에는 목축업을 하던 농장이었어요." 
             }
         ];
 
@@ -545,7 +549,7 @@
             if (selectedAnswer === questionData.answer) {
                 score++;
             } else {
-                wrongAnswers.push({ question: questionData.question, answer: questionData.answer });
+                wrongAnswers.push({ question: questionData.question, answer: questionData.answer, desc:questionData.desc });
             }
             nextQuestion();
         }
@@ -582,7 +586,7 @@
             wrongAnswers.forEach(item => {
                 let card = document.createElement("div");
                 card.className = "card";
-                card.innerHTML = `<p>${item.question}<br /><br /><b>정답:</b> ${item.answer}</p>`;
+                card.innerHTML = `<p>${item.question}<br /><br /><b>정답:</b> ${item.answer} <br />${item.desc}</p>`;
                 wrongContainer.appendChild(card);
             });
         }
