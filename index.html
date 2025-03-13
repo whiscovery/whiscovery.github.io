@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
         
 
@@ -30,24 +29,69 @@
             margin-right: 5px;
             }
         .hidden { display: none; }
-
-       
-
-        body h1{
-            font-family: 'Staatliches', cursive;
-            font-size: 2.1em;
+        /* 오늘의 위스키 요약 제목 */
+        .todaywhisky {
             text-align: center;
-            color: #F1C164;
-            text-shadow: 5px 5px #2D63A7;
-            margin: 0;
-            text-decoration: underline;
+        }    
+        h1.todaywhisky span{
+            position: relative;
+            font-weight: 400;
         }
+
+        h1.todaywhisky span:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: calc(50% + 2px); left: -10px;
+            width: calc(100% + 20px); 
+            height: 25%;
+            transform: translateY(-50%);
+            
+            z-index: -1;
+            background-color: darkorchid;
+        }
+
+
+            /* Style 9
+        ----------------------------- */
+        .nine h1 {
+            text-align:center; font-size:50px; text-transform:uppercase; color:#eeeeee; letter-spacing:1px;
+            font-family:"Playfair Display", serif; font-weight:400;
+        }
+        .nine h1 span {
+             margin-top: 5px;
+            font-size:15px; color:#a1a1a1; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+            text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+
+            display: grid;
+            grid-template-columns: 1fr max-content 1fr;
+            grid-template-rows: 27px 0;
+            grid-gap: 20px;
+            align-items: center;
+        }
+
+        .nine h1 span:after,.nine h1 span:before {
+            content: " ";
+            display: block;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            height: 5px;
+        background-color:#000;
+        }
+
+
+
+
+        /* h2, h4 */
         body h2{
             color: #ecaa24;
             font-family: 'Orbit', sans-serif;
         }
         body h4{
             color: #ecaa24;
+            font-family: 'Orbit', sans-serif;
+        }
+        body p{
             font-family: 'Orbit', sans-serif;
         }
   
@@ -93,6 +137,8 @@
             font-size: 1rem;
             font-style: italic;
             font-family: 'Orbit', sans-serif;
+            text-align: center;
+            color: rgb(202, 134, 237);
         }
         
         #options {
@@ -215,7 +261,9 @@
     <main id="quiz-container">
         <!-- 첫 화면 -->
         <section id="home">
-            <div class="text-box"><h1>Whiscovery March Meeting</h1></div>
+            <div class="nine">
+                <h1>Whiscovery CS<span>2025년 3월 정모</span></h1>
+              </div>
             <p>간단한 퀴즈와 함께 오늘 정모를 시작해보아요.</p>
             <div class="text-box"><h4>오늘의 라인업</h4></div>
 
@@ -263,14 +311,15 @@
 
         <!-- 퀴즈 진행 화면 (초기 숨김) -->
         <section id="quiz" class="hidden">
-            <hr class="line1">
+            
             <h3 id="question"></h3>
+            <br />
             <div id="options"></div>
         </section>
 
         <!-- 결과 화면 (초기 숨김) -->
         <section id="result" class="hidden">
-            <h1>퀴즈 완료!</h1>
+            <h1 class="todaywhisky"><span>퀴즈 완료</span></h1>
             <p id="scoreText"></p>
 
             <!-- 틀린 문제 정답 카드 (2x2 배열) -->
@@ -285,7 +334,9 @@
 
 
         <section id="bunsPoem" class="hidden">
-            <h2>올드 랭 사인(Auld Lang Syne)</h2>
+            <p>로크리 증류소와 관련이 있는 시인인 로버트 번즈의 시로 정모를 시작해볼게요. 올드랭 사인이라는 시는 노래로도 유명한데, 작별을 뜻하는 스코틀랜드 민요이기도 합니다. 홍콩 반환식에서 연주되기도 했고, 브렉시트가 된 후 유럽 의회에서도 불리기도 했어요. 1948년 안익태의 한국환상곡이 애국가 멜로디가 되기 전에는 대한민국 애국가의 멜로디로 사용되기도 했습니다. 
+            </p>
+            <h1 class="todaywhisky"><span>올드 랭 사인(Auld Lang Syne)</span></h1>
             <p class="poem">
                 오래된 인연을 어찌 잊어먹고<br />
                 머릿속에 떠올리지 않으리?<br />
@@ -314,14 +365,14 @@
             </div>
             <br />
             <div class="footer">
-                <button onclick="startTodays()">오늘의 정모를 위한 설명</button> 
+                <button onclick="startTodays()">오늘의 위스키 요약</button> 
                 <button class="outline secondary" onclick="location.href='index.html'">퀴즈 다시 하기</button>
             </div>
         </section>
 
 
         <section id="todays">
-            <h1>오늘의 위스키 요약</h1>
+            <h1 class="todaywhisky"><span>오늘의 위스키 요약</span></h1>
             <div class="lochlea">
                 <p>
                     <ul>
@@ -407,6 +458,7 @@
             <br />
             <div class="footer">
                 <button onclick="location.href='https://speckled-people-03c.notion.site/Lochlea-1b2f30d25d6f8061beffe3d3b076dbe2?pvs=4'">로크리에 대해 더 자세히 알기</button> 
+                <button onclick="startPoem()" class="outline secondary">시 다시 읽기.</button>
                 <button class="outline secondary" onclick="location.href='index.html'">퀴즈 다시 하기</button>
             </div>
         </section>
